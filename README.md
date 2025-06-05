@@ -1,4 +1,3 @@
-# CyArt_frontend
-what is your name?
 # Team Blue
-<br> This is  </br>
+
+<br> This team is dedicated to the Frontend Development. </br>
