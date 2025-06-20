@@ -1,6 +1,6 @@
-import Header from '@/app/feature/Header/page'
-import Sidebar from '@/app/feature/Sidebar/page'
-import SearchBar from '@/app/feature/Searchbar/page'
+import Header from '@/app/feature/header/page'
+import Sidebar from '@/app/feature/sidebar1/page'
+import SearchBar from '@/app/feature/searchbar/page'
 
 export default function DashboardPage() {
   return (
