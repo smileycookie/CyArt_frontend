@@ -1,7 +1,7 @@
 // app/page.tsx
 "use client"
 
-import { MenuBar } from "@/components/sections/menu-bar"
+import { MenuBar } from "@/components/feature04/menu-bar"
 
 export default function HomePage() {
   return (

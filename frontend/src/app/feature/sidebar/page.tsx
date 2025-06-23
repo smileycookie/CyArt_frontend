@@ -1,7 +1,7 @@
 // app/systems/page.tsx
 "use client"
 
-import { Sidebar } from "@/components/sections/sidebar"
+import { Sidebar } from "@/components/feature04/sidebar"
 
 export default function SystemsPage() {
   return (

@@ -1,26 +1,18 @@
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Card } from "@/components/ui/card"
+// app/header-preview/page.tsx
+import Header from "@/components/feature03/header"
 
-export default function Header() {
+export default function HeaderPreviewPage() {
   return (
-    <Card className="border-b rounded-none">
-      <div className="px-4 py-2">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 bg-orange-600 rounded flex items-center justify-center text-white text-sm font-bold">
-                Cy
-              </div>
-              <Tabs defaultValue="Unified">
-                <TabsList>
-                  <TabsTrigger value="Unified">Unified</TabsTrigger>
-                  <TabsTrigger value="Individual">Individual</TabsTrigger>
-                </TabsList>
-              </Tabs>
-            </div>
-          </div>
-        </div>
+    <main className="flex flex-col h-screen bg-background text-foreground">
+      <Header />
+
+      <div className="flex-1 p-6">
+        <h1 className="text-xl font-semibold mb-2">Header Component Preview</h1>
+        <p className="text-muted-foreground">
+          This page renders the <code>Header</code> component with tabs and branding. 
+          You can integrate this header into other pages as needed.
+        </p>
       </div>
-    </Card>
+    </main>
   )
 }

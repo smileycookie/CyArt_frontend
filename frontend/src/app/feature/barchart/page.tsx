@@ -2,7 +2,7 @@
 // src/app/bargraph/page.tsx
 "use client"
 
-import { ChartBarInteractive } from "@/components/Bargraph"
+import { ChartBarInteractive } from "@/components/feature02/Bargraph"
 
 export default function Page() {
   return (

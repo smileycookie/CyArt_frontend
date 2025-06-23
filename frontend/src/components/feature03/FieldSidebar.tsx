@@ -1,3 +1,4 @@
+// components/FieldSidebar.tsx
 'use client'
 
 import { useState } from 'react'
@@ -27,7 +28,7 @@ const allAvailableFields = [
   ...popularFields
 ]
 
-export default function Sidebar() {
+export default function FieldSidebar() {
   const [isCollapsed, setIsCollapsed] = useState(false)
   const [selectedFields, setSelectedFields] = useState(['_source'])
   const [availableFields, setAvailableFields] = useState(allAvailableFields)
@@ -128,7 +129,6 @@ export default function Sidebar() {
                 >
                   <span className="w-4 h-4 bg-gray-300 rounded mr-2"></span>
                   {field}
-                  
                 </div>
               ))}
             </CollapsibleContent>
@@ -157,7 +157,6 @@ export default function Sidebar() {
                 >
                   <span className="w-4 h-4 bg-blue-200 rounded mr-2"></span>
                   {field}
-                
                 </div>
               ))}
             </CollapsibleContent>

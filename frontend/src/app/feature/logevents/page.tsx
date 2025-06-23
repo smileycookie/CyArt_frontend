@@ -1,4 +1,4 @@
-import { LogEventTable } from "@/components/LogEventTable" // adjust path as needed
+import { LogEventTable } from "@/components/feature02/LogEventTable" // adjust path as needed
 import { sampleLogEvents } from "@/lib/mock-log-data" // import your mock data
 
 export default function LogEventsPage() {

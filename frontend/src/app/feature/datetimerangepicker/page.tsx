@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { DateTimeRangePicker } from "@/components/DateTimeRangePicker"
+import { DateTimeRangePicker } from "@/components/feature02/DateTimeRangePicker"
 
 export default function HomePage() {
   const [startDate, setStartDate] = useState<Date | undefined>(new Date())
