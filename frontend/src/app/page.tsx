@@ -1,11 +1,9 @@
 'use client'
 
 import { useState } from "react"
-
-import { Sidebar } from "@/components/feature04/sidebar"
+import  Sidebar  from "@/components/feature03/FieldSidebar"
 import Header from "@/components/feature03/header"
 import SearchBar from "@/components/feature03/searchbar"
-import { DateTimeRangePicker } from "@/components/feature02/DateTimeRangePicker"
 import { ChartBarInteractive } from "@/components/feature02/Bargraph"
 import { LogEventTable } from "@/components/feature02/LogEventTable"
 import { sampleLogEvents } from "@/lib/mock-log-data"
@@ -30,19 +28,6 @@ export default function SOCDashboardPage() {
         <div className="p-4 space-y-6 overflow-y-auto">
           {/* Search + Quick Time */}
           <SearchBar />
-
-          {/* Absolute Range Picker */}
-          <DateTimeRangePicker
-            startDate={startDate}
-            setStartDate={setStartDate}
-            endDate={endDate}
-            setEndDate={setEndDate}
-            startTime={startTime}
-            setStartTime={setStartTime}
-            endTime={endTime}
-            setEndTime={setEndTime}
-          />
-
           {/* Bar Chart */}
           <ChartBarInteractive />
 
