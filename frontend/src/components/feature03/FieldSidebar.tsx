@@ -78,7 +78,8 @@ export default function FieldSidebar() {
   }
 
   return (
-    <div className="w-72 bg-white border-r border-gray-200 h-screen flex flex-col">
+    <div className="w-72 bg-white border-r border-gray-200 h-screen flex flex-col overflow-hidden">
+      {/* Top Controls */}
       <div className="p-4 border-b">
         <div className="flex items-center justify-between mb-4">
           <Button 
@@ -93,18 +94,17 @@ export default function FieldSidebar() {
           </Button>
         </div>
 
-        <div className="mb-4">
-          <div className="relative">
-            <Search className="h-4 w-4 absolute left-3 top-2.5 text-gray-400" />
-            <Input
-              placeholder="Search fields"
-              className="pl-10"
-            />
-          </div>
+        <div className="relative">
+          <Search className="h-4 w-4 absolute left-3 top-2.5 text-gray-400" />
+          <Input
+            placeholder="Search fields"
+            className="pl-10"
+          />
         </div>
       </div>
 
-      <ScrollArea className="flex-1">
+      {/* Scrollable Section */}
+      <ScrollArea className="flex-1 overflow-y-auto">
         <div className="p-4">
           {/* Selected Fields */}
           <Collapsible
