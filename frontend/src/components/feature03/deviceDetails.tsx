@@ -79,12 +79,12 @@ const mockLogs: Log[] = [
 
 const mockPerformanceData = [
   { time: "14:00", cpu: 45, memory: 62, disk: 23 },
-  { time: "14:05", cpu: 52, memory: 58, disk: 25 },
-  { time: "14:10", cpu: 38, memory: 64, disk: 22 },
-  { time: "14:15", cpu: 67, memory: 61, disk: 28 },
-  { time: "14:20", cpu: 43, memory: 59, disk: 24 },
-  { time: "14:25", cpu: 55, memory: 63, disk: 26 },
-  { time: "14:30", cpu: 48, memory: 60, disk: 23 }
+  { time: "16:00", cpu: 52, memory: 58, disk: 25 },
+  { time: "18:00", cpu: 38, memory: 64, disk: 22 },
+  { time: "19:00", cpu: 67, memory: 61, disk: 28 },
+  { time: "21:00", cpu: 43, memory: 59, disk: 24 },
+  { time: "23:00", cpu: 55, memory: 63, disk: 26 },
+  { time: "01:00", cpu: 48, memory: 60, disk: 23 }
 ];
 
 const mockSettings = {
@@ -287,7 +287,7 @@ export default function AgentDetailView() {
             </div>
             
             <div className="bg-gray-50 p-4 rounded-lg">
-              <h3 className="font-medium mb-4">Performance History (Last 30 minutes)</h3>
+              <h3 className="font-medium mb-4">Performance History (Last 12 hours)</h3>
               <div className="space-y-3">
                 {mockPerformanceData.map((data, index) => (
                   <div key={index} className="flex items-center gap-4">
