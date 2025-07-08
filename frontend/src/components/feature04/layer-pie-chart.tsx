@@ -22,7 +22,7 @@ const CustomTooltip = ({ active, payload }: { active?: boolean, payload?: any[] 
   if (active && payload && payload.length) {
     return (
       <div className="bg-white p-2 rounded-md shadow-sm border border-gray-200 text-xs">
-        <p className="font-medium">{payload[0].name}</p>
+        <p className="font-medium">{payload[0].name}: {payload[0].value}%</p>
       </div>
     );
   }
@@ -99,6 +99,7 @@ export default function LayerPieChart() {
                 }}
               />
               <span className="text-[11px] flex-1 truncate">{item.name}</span>
+              <span className="text-[11px] text-gray-500 mr-2">{item.value}%</span> {/* Increased mr-1 to mr-2 */}
               {React.cloneElement(item.icon, {
                 className: "w-3 h-3 flex-shrink-0",
                 color: activeIndex.outer === index ? '#1E40AF' : item.color
@@ -123,6 +124,7 @@ export default function LayerPieChart() {
                 }}
               />
               <span className="text-[11px] flex-1 truncate">{item.name}</span>
+              <span className="text-[11px] text-gray-500 mr-2">{item.value}%</span> {/* Increased mr-1 to mr-2 */}
               {React.cloneElement(item.icon, {
                 className: "w-3 h-3 flex-shrink-0",
                 color: activeIndex.inner === index ? '#2563EB' : item.color
