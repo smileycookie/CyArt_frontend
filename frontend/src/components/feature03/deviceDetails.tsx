@@ -407,6 +407,7 @@ export default function AgentDetailView() {
                 defaultValue="5"
                 onChange={(e) => {
                   const intervals = {
+                    '0': 'Real-time',
                     '1': 'Every 1 minute',
                     '5': 'Every 5 minutes',
                     '15': 'Every 15 minutes',
@@ -416,6 +417,7 @@ export default function AgentDetailView() {
                   console.log(`Reporting interval set to ${intervals[e.target.value as keyof typeof intervals] || 'Unknown interval'}`);
                 }}
               >
+                <option value="0">Real-time</option>
                 <option value="1">Every 1 minute</option>
                 <option value="5">Every 5 minutes</option>
                 <option value="15">Every 15 minutes</option>
