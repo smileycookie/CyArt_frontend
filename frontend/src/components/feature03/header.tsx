@@ -1,4 +1,8 @@
-"use client"
+//  \components\feature03\header.tsx
+
+'use client'
+
+import { useRouter, usePathname } from 'next/navigation'
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -12,88 +16,65 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { User } from "lucide-react"
 import Link from "next/link"
+
 export default function Header() {
+  const router = useRouter()
+  const pathname = usePathname()
+
+  // Check current route to select the active tab
+  const currentTab = pathname.startsWith('/individual_dashboard') ? 'Individual' : 'Unified'
+
+  const handleTabChange = (value: string) => {
+    if (value === 'Unified') {
+      router.push('/') // Goes to app/page.tsx
+    } else if (value === 'Individual') {
+      router.push('/individual_dashboard') // Goes to app/agents/page.tsx
+    }
+  }
+
   return (
     <Card className="border-b rounded-none sticky top-0 z-10">
-      <div className="px-4 py-2">
-        <div className="flex items-center justify-between">
-          {/* Left side - Logo and Tabs */}
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 bg-orange-600 rounded flex items-center justify-center text-white text-sm font-bold">
-                Cy
-              </div>
-              <Tabs defaultValue="Unified">
-                <TabsList>
-                  <TabsTrigger value="Unified">Unified</TabsTrigger>
-                  <TabsTrigger value="Individual">Individual</TabsTrigger>
-                </TabsList>
-              </Tabs>
+      <div className="px-4 py-2 flex items-center justify-between">
+        {/* Left Side - Tabs */}
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            <div className="w-12 h-8 bg-orange-600 rounded text-white font-bold flex items-center justify-center text-sm">
+              CyArt
             </div>
-          </div>
-          {/* Right side - Navigation Links and User Menu */}
-          <div className="flex items-center gap-6">
-            {/* Navigation Links - Hidden on mobile */}
-            <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
-              <Link
-                href="/dashboard"
-                className="text-muted-foreground transition-colors hover:text-foreground"
-              >
-                Dashboard
-              </Link>
-              <Link
-                href="/logs"
-                className="text-muted-foreground transition-colors hover:text-foreground"
-              >
-                Log Monitoring
-              </Link>
-              <Link
-                href="/security"
-                className="text-muted-foreground transition-colors hover:text-foreground"
-              >
-                Security Events
-              </Link>
-            </nav>
-            {/* User Menu */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="secondary" size="icon" className="rounded-full">
-                  <User className="h-5 w-5" />
-                  <span className="sr-only">Toggle user menu</span>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Settings</DropdownMenuItem>
-                <DropdownMenuItem>Support</DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Logout</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <Tabs value={currentTab} onValueChange={handleTabChange}>
+              <TabsList>
+                <TabsTrigger value="Unified">Unified</TabsTrigger>
+                <TabsTrigger value="Individual">Individual</TabsTrigger>
+              </TabsList>
+            </Tabs>
           </div>
         </div>
-        {/* Mobile Navigation - Shows on small screens below */}
-        <nav className="mt-2 flex md:hidden items-center gap-4 text-sm font-medium">
-          <Link
-            href="/dashboard"
-            className="text-muted-foreground transition-colors hover:text-foreground"
-          >
-            Dashboard
-          </Link>
-          <Link
-            href="/logs"
-            className="text-muted-foreground transition-colors hover:text-foreground"
-          >
-            Logs
-          </Link>
-          <Link
-            href="/security"
-            className="text-muted-foreground transition-colors hover:text-foreground"
-          >
-            Security
-          </Link>
-        </nav>
+
+        {/* Right Side - User Menu */}
+        <div className="flex items-center gap-6">
+          <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
+            <Link href="/" className="text-muted-foreground hover:text-foreground">Home</Link>
+            <Link href="/logs" className="text-muted-foreground hover:text-foreground">Logs</Link>
+            <Link href="/security" className="text-muted-foreground hover:text-foreground">Security</Link>
+          </nav>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="secondary" size="icon" className="rounded-full">
+                <User className="h-5 w-5" />
+                <span className="sr-only">Toggle user menu</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Settings</DropdownMenuItem>
+              <DropdownMenuItem>Support</DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Logout</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       </div>
     </Card>
   )

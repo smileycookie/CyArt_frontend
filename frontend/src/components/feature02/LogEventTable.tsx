@@ -1,3 +1,5 @@
+// \components\feature02\LogEventTable.tsx
+
 "use client"
 
 import { useState } from "react"

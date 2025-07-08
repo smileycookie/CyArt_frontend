@@ -1,3 +1,5 @@
+// \components\feature02\agenttable.tsx
+
 'use client'
 
 import { useState, useRef } from "react"

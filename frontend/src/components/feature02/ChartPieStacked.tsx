@@ -1,3 +1,5 @@
+// \components\feature02\ChartPieStacked.tsx
+
 "use client"
 
 import * as React from "react"
