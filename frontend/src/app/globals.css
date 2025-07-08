@@ -3,6 +3,22 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Ensures no spacing inconsistencies */
+.flex-gap-fix {
+  margin: -0.5rem;
+}
+.flex-gap-fix > * {
+  margin: 0.5rem;
+}
+
+/* To increase/decrease spacing */
+.flex-gap-fix {
+  margin: -0.75rem; /* Adjust negative margin */
+}
+.flex-gap-fix > * {
+  margin: 0.75rem; /* Adjust positive margin */
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -44,6 +60,7 @@
 }
 
 :root {
+  --current-color: #3B82F6;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.129 0.042 264.695);
