@@ -2,6 +2,7 @@
 import React, { JSX, useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Switch } from "@/components/ui/switch";
 import { Shield, Play, AlertTriangle, Activity, Network, HardDrive, Cpu, Calendar, Clock, Info, Settings, BarChart3, FileText } from 'lucide-react';
 
 
@@ -329,61 +330,178 @@ export default function AgentDetailView() {
         );
 
       case 'settings':
-        return (
-          <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                  <div>
-                    <p className="font-medium">Auto Update</p>
-                    <p className="text-sm text-gray-600">Automatically update agent</p>
-                  </div>
-                  <Badge className={mockSettings.autoUpdate ? "bg-green-500" : "bg-gray-500"}>
-                    {mockSettings.autoUpdate ? "Enabled" : "Disabled"}
-                  </Badge>
-                </div>
-                
-                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                  <div>
-                    <p className="font-medium">Real-time Protection</p>
-                    <p className="text-sm text-gray-600">Monitor threats in real-time</p>
-                  </div>
-                  <Badge className={mockSettings.realTimeProtection ? "bg-green-500" : "bg-gray-500"}>
-                    {mockSettings.realTimeProtection ? "Enabled" : "Disabled"}
-                  </Badge>
-                </div>
-                
-                <div className="p-3 bg-gray-50 rounded-lg">
-                  <p className="font-medium">Scheduled Scan</p>
-                  <p className="text-sm text-gray-600">{mockSettings.scheduledScan}</p>
-                </div>
-                
-                <div className="p-3 bg-gray-50 rounded-lg">
-                  <p className="font-medium">Reporting Interval</p>
-                  <p className="text-sm text-gray-600">{mockSettings.reportingInterval}</p>
-                </div>
+  return (
+    <div className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-4">
+          {/* Auto Update with Toggle */}
+          <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+            <div>
+              <p className="font-medium">Auto Update</p>
+              <p className="text-sm text-gray-600">Automatically update agent</p>
+            </div>
+            <Switch
+              checked={mockSettings.autoUpdate}
+              onCheckedChange={(checked) => {
+                // In a real app, you would update the state here
+                console.log(`Auto Update ${checked ? 'enabled' : 'disabled'}`);
+              }}
+              className="data-[state=checked]:bg-green-500 data-[state=unchecked]:bg-gray-200"
+            />
+          </div>
+          
+          {/* Real-time Protection with Toggle */}
+          <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+            <div>
+              <p className="font-medium">Real-time Protection</p>
+              <p className="text-sm text-gray-600">Monitor threats in real-time</p>
+            </div>
+            <Switch
+              checked={mockSettings.realTimeProtection}
+              onCheckedChange={(checked) => {
+                // In a real app, you would update the state here
+                console.log(`Real-time Protection ${checked ? 'enabled' : 'disabled'}`);
+              }}
+              className="data-[state=checked]:bg-green-500 data-[state=unchecked]:bg-gray-200"
+            />
+          </div>
+          
+          {/* Scheduled Scan with Time Picker */}
+          <div className="p-4 bg-gray-50 rounded-lg">
+            <div className="flex justify-between items-start">
+              <div>
+                <p className="font-medium">Scheduled Scan</p>
+                <p className="text-sm text-gray-600">Set time for daily scan</p>
               </div>
-              
-              <div className="space-y-4">
-                <div className="p-3 bg-gray-50 rounded-lg">
-                  <p className="font-medium">Log Level</p>
-                  <p className="text-sm text-gray-600">{mockSettings.logLevel}</p>
-                </div>
-                
-                <div className="p-3 bg-gray-50 rounded-lg">
-                  <p className="font-medium">Quarantine Path</p>
-                  <p className="text-sm text-gray-600 font-mono">{mockSettings.quarantinePath}</p>
-                </div>
-                
-                <div className="p-3 bg-gray-50 rounded-lg">
-                  <p className="font-medium">Max Log Size</p>
-                  <p className="text-sm text-gray-600">{mockSettings.maxLogSize}</p>
-                </div>
+              <div className="flex items-center gap-2">
+                <select 
+                  className="bg-white border rounded-md px-2 py-1 text-sm"
+                  defaultValue="Daily"
+                >
+                  <option value="Daily">Daily</option>
+                  <option value="Weekly">Weekly</option>
+                  <option value="Monthly">Monthly</option>
+                </select>
+                <input
+                  type="time"
+                  defaultValue="02:00"
+                  className="bg-white border rounded-md px-2 py-1 text-sm"
+                  onChange={(e) => {
+                    console.log(`Scheduled scan time set to ${e.target.value}`);
+                  }}
+                />
               </div>
             </div>
           </div>
-        );
-
+          
+          {/* Reporting Interval */}
+          <div className="p-4 bg-gray-50 rounded-lg">
+            <div className="flex justify-between items-center">
+              <div>
+                <p className="font-medium">Reporting Interval</p>
+                <p className="text-sm text-gray-600">How often to send reports</p>
+              </div>
+              <select 
+                className="bg-white border rounded-md px-2 py-1 text-sm"
+                defaultValue="5"
+                onChange={(e) => {
+                  const intervals = {
+                    '1': 'Every 1 minute',
+                    '5': 'Every 5 minutes',
+                    '15': 'Every 15 minutes',
+                    '30': 'Every 30 minutes',
+                    '60': 'Every 1 hour'
+                  };
+                  console.log(`Reporting interval set to ${intervals[e.target.value as keyof typeof intervals] || 'Unknown interval'}`);
+                }}
+              >
+                <option value="1">Every 1 minute</option>
+                <option value="5">Every 5 minutes</option>
+                <option value="15">Every 15 minutes</option>
+                <option value="30">Every 30 minutes</option>
+                <option value="60">Every 1 hour</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        
+        <div className="space-y-4">
+          {/* Log Level */}
+          <div className="p-4 bg-gray-50 rounded-lg">
+            <div className="flex justify-between items-center">
+              <div>
+                <p className="font-medium">Log Level</p>
+                <p className="text-sm text-gray-600">Set verbosity of logs</p>
+              </div>
+              <select 
+                className="bg-white border rounded-md px-2 py-1 text-sm"
+                defaultValue="INFO"
+                onChange={(e) => {
+                  console.log(`Log level set to ${e.target.value}`);
+                }}
+              >
+                <option value="DEBUG">DEBUG</option>
+                <option value="INFO">INFO</option>
+                <option value="WARNING">WARNING</option>
+                <option value="ERROR">ERROR</option>
+              </select>
+            </div>
+          </div>
+          
+          {/* Quarantine Path */}
+          <div className="p-4 bg-gray-50 rounded-lg">
+            <div className="flex justify-between items-center">
+              <div>
+                <p className="font-medium">Quarantine Path</p>
+                <p className="text-sm text-gray-600 font-mono">{mockSettings.quarantinePath}</p>
+              </div>
+              <Button variant="outline" size="sm" onClick={() => {
+                // In a real app, this would open a file picker
+                console.log('Change quarantine path clicked');
+              }}>
+                Change
+              </Button>
+            </div>
+          </div>
+          
+          {/* Max Log Size */}
+          <div className="p-4 bg-gray-50 rounded-lg">
+            <div className="flex justify-between items-center">
+              <div>
+                <p className="font-medium">Max Log Size</p>
+                <p className="text-sm text-gray-600">Maximum size for log files</p>
+              </div>
+              <select 
+                className="bg-white border rounded-md px-2 py-1 text-sm"
+                defaultValue="100"
+                onChange={(e) => {
+                  console.log(`Max log size set to ${e.target.value} MB`);
+                }}
+              >
+                <option value="50">50 MB</option>
+                <option value="100">100 MB</option>
+                <option value="250">250 MB</option>
+                <option value="500">500 MB</option>
+              </select>
+            </div>
+          </div>
+          
+          {/* Save Settings Button */}
+          <div className="p-4 bg-gray-50 rounded-lg">
+            <Button 
+              className="w-full bg-blue-600 hover:bg-blue-700"
+              onClick={() => {
+                // In a real app, this would save all settings
+                console.log('Settings saved');
+              }}
+            >
+              Save Settings
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
       case 'actions':
         return (
           <div className="space-y-6">
@@ -411,7 +529,7 @@ export default function AgentDetailView() {
                   <div className="w-32 bg-gray-200 rounded-full h-2">
                     <div 
                       className="bg-blue-600 h-2 rounded-full transition-all duration-300" 
-                      style={{ width: `${Math.min(scanProgress, 100)}%` }}
+                      style={{ width: `${Math.min(scanProgress, 98)}%` }}
                     ></div>
                   </div>
                   <span className="text-sm text-gray-600">{Math.round(scanProgress)}%</span>
