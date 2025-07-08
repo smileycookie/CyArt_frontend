@@ -1,3 +1,4 @@
+//  frontend\src\components\feature03\deviceDetails.tsx
 "use client"
 import React, { JSX, useState } from 'react';
 import { Badge } from '@/components/ui/badge';

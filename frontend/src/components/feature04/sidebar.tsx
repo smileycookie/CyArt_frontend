@@ -1,3 +1,4 @@
+//frontend\src\components\feature04\sidebar.tsx
 "use client"
 
 import { ChevronDown, ChevronRight, Menu, LayoutDashboard, Activity, ShieldAlert, Server, FileSearch, Settings, LogOut } from "lucide-react"

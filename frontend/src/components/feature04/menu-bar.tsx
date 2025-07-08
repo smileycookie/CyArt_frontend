@@ -1,3 +1,4 @@
+// frontend\src\components\feature04\menu-bar.tsx
 "use client"
 
 // Update these import paths

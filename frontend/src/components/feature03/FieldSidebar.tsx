@@ -1,4 +1,4 @@
-// components/FieldSidebar.tsx
+// frontend\src\components\feature03\FieldSidebar.tsx
 'use client'
 
 import { useState } from 'react'

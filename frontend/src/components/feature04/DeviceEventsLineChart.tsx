@@ -1,3 +1,4 @@
+// frontend\src\components\feature04\DeviceEventsLineChart.tsx
 "use client"
 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';

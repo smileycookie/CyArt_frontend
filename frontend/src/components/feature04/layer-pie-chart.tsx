@@ -1,3 +1,4 @@
+// frontend\src\components\feature04\layer-pie-chart.tsx
 'use client';
 import React from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';

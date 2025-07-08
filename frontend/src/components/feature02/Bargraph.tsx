@@ -117,7 +117,7 @@ export function ChartBarInteractive() {
     <Card className="pt-0">
       <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
         <div className="grid flex-1 gap-1">
-          <CardTitle>Bar Chart - Interactive</CardTitle>
+          <CardTitle>Events Visualisation</CardTitle>
           <CardDescription>
             Showing total users by OS for {timeLabel[timeRange]}
           </CardDescription>

@@ -38,8 +38,8 @@ export default function Header() {
         {/* Left Side - Tabs */}
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
-            <div className="w-12 h-8 bg-orange-600 rounded text-white font-bold flex items-center justify-center text-sm">
-              CyArt
+            <div className="w-22 h-8 bg-orange-600 rounded text-white font-bold flex items-center justify-center text-sm">
+              CyberDeck
             </div>
             <Tabs value={currentTab} onValueChange={handleTabChange}>
               <TabsList>
