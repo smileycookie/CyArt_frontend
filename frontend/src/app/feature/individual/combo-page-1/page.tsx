@@ -19,5 +19,5 @@ export default function ComboPage1() {
       </div>
       <div className="h-[50vh]"></div>
     </div>
-  );
+  ); 
 }
