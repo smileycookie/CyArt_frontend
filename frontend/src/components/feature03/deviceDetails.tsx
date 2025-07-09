@@ -234,21 +234,22 @@ export default function AgentDetailView() {
               <div className="p-4 border rounded-lg">
                 <h3 className="font-medium mb-2">Quick Actions</h3>
                 <div className="space-y-2">
+                   <Button variant="outline" className="w-full justify-start">
+                    <HardDrive className="w-4 h-4 mr-2" />
+                    Clear Cache
+                  </Button>
                   <Button variant="outline" className="w-full justify-start">
                     <Activity className="w-4 h-4 mr-2" />
                     Restart Agent Service
                   </Button>
-                  <Button variant="outline" className="w-full justify-start">
-                    <HardDrive className="w-4 h-4 mr-2" />
-                    Clear Cache
-                  </Button>
-                  <Button
-                onClick={handleQuarantine}
-                variant={isQuarantined ? "default" : "outline"}
+                  
+                  <Button variant={isScanning ? "default" : "outline"}
+                onClick={handleRunScan}
+                disabled={isScanning}
                 className="w-full justify-start"
               >
-                <Shield className="w-4 h-4 mr-2" />
-                {isQuarantined ? "Remove from Quarantine" : "Quarantine Agent"}
+                <Play className="w-4 h-4 mr-2" />
+                {isScanning ? "Scanning..." : "Run Security Scan"}
               </Button>
                 </div>
               </div>
@@ -256,13 +257,13 @@ export default function AgentDetailView() {
               <div className="p-4 border rounded-lg">
                 <h3 className="font-medium mb-2">Advanced Actions</h3>
                 <div className="space-y-2">
-                   <Button variant={isScanning ? "default" : "outline"}
-                onClick={handleRunScan}
-                disabled={isScanning}
+                  <Button
+                onClick={handleQuarantine}
+                variant={isQuarantined ? "default" : "outline"}
                 className="w-full justify-start"
               >
-                <Play className="w-4 h-4 mr-2" />
-                {isScanning ? "Scanning..." : "Run Security Scan"}
+                <Shield className="w-4 h-4 mr-2" />
+                {isQuarantined ? "Remove from Quarantine" : "Quarantine Agent"}
               </Button>
                   <Button variant="outline" className="w-full justify-start">
                     <Network className="w-4 h-4 mr-2" />
