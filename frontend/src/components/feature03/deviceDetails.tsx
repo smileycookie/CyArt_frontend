@@ -23,7 +23,7 @@ const mockAgent = {
   os: "Windows 11 Pro",
   osIcon: "windows",
   cvss: 7.5,
-  status: "online",
+  status: "Online",
   lastSeen: "2025-07-02 14:30:22",
   version: "Agent v2.1.4",
   domain: "CORPORATE",
