@@ -129,7 +129,7 @@ export default function AgentTable() {
                 </td>
                 <td className="px-2 py-2">{getCVSSBadge(agent.cvss)}</td>
                 <td className="px-2 py-2">
-                  <Badge className={agent.status === "online" ? "bg-green-500" : "bg-red-500"}>
+                  <Badge className={agent.status === "Online" ? "bg-green-500" : "bg-red-500"}>
                     {agent.status}
                   </Badge>
                 </td>

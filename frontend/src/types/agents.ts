@@ -6,5 +6,5 @@ export interface Agent {
   os: string
   osIcon: "windows" | "ubuntu" | "linux"
   cvss: number
-  status: "online" | "offline"   // ✅ Add this line
+  status: "Online" | "Offline"   // ✅ Add this line
 }

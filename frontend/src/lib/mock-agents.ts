@@ -20,6 +20,6 @@ export const agents: Agent[] = Array.from({ length: 120 }, (_, i) => {
     os,
     osIcon: icon,
     cvss: +(Math.random() * 10).toFixed(1),
-    status: Math.random() > 0.4 ? "online" : "offline" // ✅ Status inside the return object
+    status: Math.random() > 0.4 ? "Online" : "Offline" // ✅ Status inside the return object
   }
 })
