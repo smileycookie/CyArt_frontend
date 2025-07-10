@@ -1,7 +1,7 @@
 // app/agents/page.tsx
 
 import Header from "@/components/feature03/header"
-import AgentTable from "@/components/feature02/agenttable"
+import AgentTable from "@/components/feature03/agentTable"
 import { Card } from "@/components/ui/card";
 import StatusPieChart from "@/components/feature04/status-pie-chart";
 import OsPieChart from "@/components/feature04/os-pie-chart";
