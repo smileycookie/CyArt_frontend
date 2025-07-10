@@ -1,3 +1,4 @@
+// 📁\frontend\src\lib\mock-log-data.ts
 import { LogEvent } from "@/types/log-event"
 
 export const sampleLogEvents: LogEvent[] = [
