@@ -352,7 +352,7 @@ export default function AgentDetailView({ agent = {
             </div>
             
             <div className="bg-gray-50 p-4 rounded-lg">
-              <h3 className="font-medium mb-4">Performance History (Last 12 hours)</h3>
+              <h3 className="font-medium mb-4">Performance History (Last 24 hours)</h3>
               <div className="space-y-3">
                 {mockPerformanceData.map((data, index) => (
                   <div key={index} className="flex items-center gap-4">
