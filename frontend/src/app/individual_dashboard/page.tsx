@@ -1,7 +1,7 @@
 // app/agents/page.tsx
 
 import Header from "@/components/feature03/header"
-import AgentTable from "@/components/feature02/agenttable"
+import AgentTable from "@/components/feature03/agentTable"
 import { Card } from "@/components/ui/card";
 import StatusPieChart from "@/components/feature04/status-pie-chart";
 import OsPieChart from "@/components/feature04/os-pie-chart";
@@ -29,11 +29,10 @@ export default function AgentsPage() {
                     <OsPieChart />
                   </div>
                 </Card>
-        
-                {/* Performance Gauge - Adjusted positioning */}
+      
                 <Card className="flex-1 p-4 flex flex-col">
-                  <h2 className="text-lg font-semibold mb-1 text-center">Performance</h2> {/* Reduced mb-2 to mb-1 */}
-                  <div className="flex-1 flex items-center justify-center pt-0"> {/* Removed padding-top */}
+                  <h2 className="text-lg font-semibold mb-1 text-center">Performance</h2>
+                  <div className="flex-1 flex items-center justify-center pt-0"> 
                     <PerformanceGauge />
                   </div>
                 </Card>

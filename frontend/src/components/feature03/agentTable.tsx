@@ -77,9 +77,9 @@ export default function AgentTable() {
   })
 
   const handleRowClick = (agent: typeof agents[0]) => {
-    // Navigate to agent details on same page
-    navigateToAgentDetails(agent.id)
-  }
+  const url = `/devices/${agent.id}`
+  window.open(url, "_blank", "noopener,noreferrer")
+}
 
   return (
     <div className="space-y-4">
