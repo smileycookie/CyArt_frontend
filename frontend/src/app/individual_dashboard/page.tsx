@@ -29,11 +29,10 @@ export default function AgentsPage() {
                     <OsPieChart />
                   </div>
                 </Card>
-        
-                {/* Performance Gauge - Adjusted positioning */}
+      
                 <Card className="flex-1 p-4 flex flex-col">
-                  <h2 className="text-lg font-semibold mb-1 text-center">Performance</h2> {/* Reduced mb-2 to mb-1 */}
-                  <div className="flex-1 flex items-center justify-center pt-0"> {/* Removed padding-top */}
+                  <h2 className="text-lg font-semibold mb-1 text-center">Performance</h2>
+                  <div className="flex-1 flex items-center justify-center pt-0"> 
                     <PerformanceGauge />
                   </div>
                 </Card>

@@ -1,4 +1,3 @@
-//  frontend\src\components\feature03\deviceDetails.tsx
 "use client"
 import React, { JSX, useState } from 'react';
 import { Badge } from '@/components/ui/badge';
@@ -6,6 +5,24 @@ import { Button } from '@/components/ui/button';
 import { Switch } from "@/components/ui/switch";
 import { Shield, Play, AlertTriangle, Activity, Network, HardDrive, Cpu, Calendar, Clock, Info, Settings, BarChart3, FileText } from 'lucide-react';
 
+interface Agent {
+  id: string;
+  name: string;
+  ip: string;
+  mac: string;
+  os: string;
+  osIcon: string;
+  cvss: number;
+  status: string;
+  lastSeen: string;
+  version: string;
+  domain: string;
+  uptime: string;
+  cpu: string;
+  memory: string;
+  storage: string;
+  location: string;
+}
 
 interface Log {
   id: number;
@@ -14,25 +31,6 @@ interface Log {
   message: string;
   source: string;
 }
-
-const mockAgent = {
-  id: "AGT-001",
-  name: "DESKTOP-ABC123",
-  ip: "192.168.1.100",
-  mac: "00:1B:44:11:3A:B7",
-  os: "Windows 11 Pro",
-  osIcon: "windows",
-  cvss: 7.5,
-  status: "Online",
-  lastSeen: "2025-07-02 14:30:22",
-  version: "Agent v2.1.4",
-  domain: "CORPORATE",
-  uptime: "7 days, 14 hours",
-  cpu: "Intel Core i7-12700K",
-  memory: "16 GB DDR4",
-  storage: "512 GB SSD",
-  location: "Building A, Floor 3"
-};
 
 const mockLogs: Log[] = [
   {
@@ -131,10 +129,30 @@ const tabs = [
   { id: 'logs', label: 'Device Logs', icon: FileText },
   { id: 'performance', label: 'Performance', icon: BarChart3 },
   { id: 'settings', label: 'Settings', icon: Settings },
- // { id: 'actions', label: 'Actions', icon: Cpu }
 ];
 
-export default function AgentDetailView() {
+interface AgentDetailViewProps {
+  agent?: Agent; // Make it optional
+}
+
+export default function AgentDetailView({ agent = {
+  id: "AGT-001",
+  name: "DESKTOP-ABC123",
+  ip: "192.168.1.100",
+  mac: "00:1B:44:11:3A:B7",
+  os: "Windows 11 Pro",
+  osIcon: "windows",
+  cvss: 7.5,
+  status: "Online",
+  lastSeen: "2025-07-02 14:30:22",
+  version: "Agent v2.1.4",
+  domain: "CORPORATE",
+  uptime: "7 days, 14 hours",
+  cpu: "Intel Core i7-12700K",
+  memory: "16 GB DDR4",
+  storage: "512 GB SSD",
+  location: "Building A, Floor 3"
+} }: AgentDetailViewProps)  {
   const [activeTab, setActiveTab] = useState('overview');
   const [isQuarantined, setIsQuarantined] = useState(false);
   const [isScanning, setIsScanning] = useState(false);
@@ -168,65 +186,64 @@ export default function AgentDetailView() {
       case 'overview':
         return (
           <div className="space-y-6">
-            {/* Agent Information */}
+             {/* Agent Information */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="space-y-4">
                 <div>
                   <label className="text-sm font-medium text-gray-500">IP Address</label>
-                  <p className="text-sm text-gray-900 font-mono">{mockAgent.ip}</p>
+                  <p className="text-sm text-gray-900 font-mono">{agent.ip}</p>
                 </div>
                 <div>
                   <label className="text-sm font-medium text-gray-500">MAC Address</label>
-                  <p className="text-sm text-gray-900 font-mono">{mockAgent.mac}</p>
+                  <p className="text-sm text-gray-900 font-mono">{agent.mac}</p>
                 </div>
                 <div>
                   <label className="text-sm font-medium text-gray-500">Operating System</label>
-                  <p className="text-sm text-gray-900">{mockAgent.os}</p>
+                  <p className="text-sm text-gray-900">{agent.os}</p>
                 </div>
               </div>
-              
-              <div className="space-y-4">
+           <div className="space-y-4">
                 <div>
                   <label className="text-sm font-medium text-gray-500">Domain</label>
-                  <p className="text-sm text-gray-900">{mockAgent.domain}</p>
+                  <p className="text-sm text-gray-900">{agent.domain}</p>
                 </div>
                 <div>
                   <label className="text-sm font-medium text-gray-500">Agent Version</label>
-                  <p className="text-sm text-gray-900">{mockAgent.version}</p>
+                  <p className="text-sm text-gray-900">{agent.version}</p>
                 </div>
                 <div>
                   <label className="text-sm font-medium text-gray-500">Uptime</label>
-                  <p className="text-sm text-gray-900">{mockAgent.uptime}</p>
+                  <p className="text-sm text-gray-900">{agent.uptime}</p>
                 </div>
               </div>
               
               <div className="space-y-4">
                 <div>
                   <label className="text-sm font-medium text-gray-500">CPU</label>
-                  <p className="text-sm text-gray-900">{mockAgent.cpu}</p>
+                  <p className="text-sm text-gray-900">{agent.cpu}</p>
                 </div>
                 <div>
                   <label className="text-sm font-medium text-gray-500">Memory</label>
-                  <p className="text-sm text-gray-900">{mockAgent.memory}</p>
+                  <p className="text-sm text-gray-900">{agent.memory}</p>
                 </div>
                 <div>
                   <label className="text-sm font-medium text-gray-500">Storage</label>
-                  <p className="text-sm text-gray-900">{mockAgent.storage}</p>
+                  <p className="text-sm text-gray-900">{agent.storage}</p>
                 </div>
               </div>
               
               <div className="space-y-4">
                 <div>
                   <label className="text-sm font-medium text-gray-500">Location</label>
-                  <p className="text-sm text-gray-900">{mockAgent.location}</p>
+                  <p className="text-sm text-gray-900">{agent.location}</p>
                 </div>
                 <div>
                   <label className="text-sm font-medium text-gray-500">Last Seen</label>
-                  <p className="text-sm text-gray-900">{mockAgent.lastSeen}</p>
+                  <p className="text-sm text-gray-900">{agent.lastSeen}</p>
                 </div>
                 <div>
                   <label className="text-sm font-medium text-gray-500">CVSS Score</label>
-                  <p className="text-sm text-gray-900">{mockAgent.cvss}/10</p>
+                  <p className="text-sm text-gray-900">{agent.cvss}/10</p>
                 </div>
               </div>
             </div>
@@ -283,7 +300,7 @@ export default function AgentDetailView() {
         return (
           <div className="space-y-3 max-h-96 overflow-y-auto">
             {mockLogs.map((log) => (
-              <div key={log.id} className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
+                <div key={log.id} className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
                 <div className="flex-shrink-0">
                   {getLogLevelBadge(log.level)}
                 </div>
@@ -304,7 +321,7 @@ export default function AgentDetailView() {
       case 'performance':
         return (
           <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="bg-blue-50 p-4 rounded-lg">
                 <div className="flex items-center justify-between">
                   <div>
@@ -377,9 +394,9 @@ export default function AgentDetailView() {
         );
 
       case 'settings':
-  return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        return (
+          <div className="space-y-6">
+           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-4">
           {/* Auto Update with Toggle */}
           <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
@@ -559,26 +576,25 @@ export default function AgentDetailView() {
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-7xl mx-auto space-y-6">
-        {/* Header */}
         <div className="bg-white rounded-lg shadow-sm border p-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                {mockAgent.osIcon === "windows" && <span className="text-2xl">🪟</span>}
-                {mockAgent.osIcon === "linux" && <span className="text-2xl">🐧</span>}
-                {mockAgent.osIcon === "ubuntu" && <span className="text-2xl">🟠</span>}
+                {agent.osIcon === "windows" && <span className="text-2xl">🪟</span>}
+                {agent.osIcon === "linux" && <span className="text-2xl">🐧</span>}
+                {agent.osIcon === "ubuntu" && <span className="text-2xl">🟠</span>}
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">{mockAgent.name}</h1>
-                <p className="text-gray-600">Agent ID: {mockAgent.id}</p>
+                <h1 className="text-2xl font-bold text-gray-900">{agent.name}</h1>
+                <p className="text-gray-600">Agent ID: {agent.id}</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <Badge className={mockAgent.status === "online" ? "bg-green-500 text-white" : "bg-red-500 text-white"}>
+              <Badge className={agent.status === "online" ? "bg-green-500 text-white" : "bg-red-500 text-white"}>
                 <Activity className="w-3 h-3 mr-1" />
-                {mockAgent.status.toUpperCase()}
+                {agent.status.toUpperCase()}
               </Badge>
-              {getCVSSBadge(mockAgent.cvss)}
+              {getCVSSBadge(agent.cvss)}
               {isQuarantined && (
                 <Badge className="bg-orange-500 text-white">
                   <Shield className="w-3 h-3 mr-1" />
