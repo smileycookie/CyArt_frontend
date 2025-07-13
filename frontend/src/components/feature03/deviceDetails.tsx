@@ -97,16 +97,16 @@ const mockSettings = {
   maxLogSize: "100 MB"
 };
 
-const getCVSSLabel = (score: number): string => {
+const getCVSSLabel = (score: number): 'Critical' | 'High' | 'Medium' | 'Low' => {
   if (score >= 9.0) return "Critical";
   if (score >= 7.0) return "High";
   if (score >= 4.0) return "Medium";
   return "Low";
-};
+};  
 
 const getCVSSBadge = (score: number): JSX.Element => {
   const label = getCVSSLabel(score);
-  const colorMap: Record<string, string> = {
+  const colorMap: Record<'Critical' | 'High' | 'Medium' | 'Low', string> = {
     Critical: "bg-red-700 text-white",
     High: "bg-red-500 text-white",
     Medium: "bg-yellow-400 text-black",
@@ -114,7 +114,6 @@ const getCVSSBadge = (score: number): JSX.Element => {
   };
   return <Badge className={colorMap[label]}>{label}</Badge>;
 };
-
 const getLogLevelBadge = (level: Log['level']): JSX.Element => {
   const colorMap: Record<Log['level'], string> = {
     ERROR: "bg-red-500 text-white",
@@ -132,7 +131,7 @@ const tabs = [
 ];
 
 interface AgentDetailViewProps {
-  agent?: Agent; // Make it optional
+  agent?: Agent; 
 }
 
 export default function AgentDetailView({ agent = {
@@ -590,10 +589,10 @@ export default function AgentDetailView({ agent = {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <Badge className={agent.status === "online" ? "bg-green-500 text-white" : "bg-red-500 text-white"}>
-                <Activity className="w-3 h-3 mr-1" />
-                {agent.status.toUpperCase()}
+              <Badge className={agent.status === "Online" ? "bg-green-500 text-white" : "bg-red-500 text-white"}>
+                {agent.status}
               </Badge>
+              
               {getCVSSBadge(agent.cvss)}
               {isQuarantined && (
                 <Badge className="bg-orange-500 text-white">
