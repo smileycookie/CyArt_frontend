@@ -129,7 +129,7 @@ export default function AgentTable() {
                 key={agent.id}
                 onDoubleClick={() => handleRowClick(agent)}
                 className="hover:bg-muted cursor-pointer transition"
-                title="Click to view agent details"
+                title="Double click to view agent details"
               >
                 {tableColumns.map((col) => (
                   <td key={`${agent.id}-${col.key}`} className="px-2 py-2">
