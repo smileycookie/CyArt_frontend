@@ -1,5 +1,4 @@
-// types/agent.ts
-export type Agents = {
+export type Agent = {
   id: string;
   name: string;
   ip: string;
@@ -7,7 +6,7 @@ export type Agents = {
   os: string;
   osIcon: 'windows' | 'linux' | 'ubuntu';
   cvss: number;
-  status: 'online' | 'offline' | 'maintenance';
+  status: 'Online' | 'Offline' | 'Maintenance'; 
   lastSeen: string;
   version: string;
   domain: string;

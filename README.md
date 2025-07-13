@@ -23,7 +23,11 @@ If you’ve just cloned this project and see errors like:
 5. **Start the development server**
    ```bash
    npm run dev
-## If this worked, then everything is working fine.
+6. **If it loads still you will have install the Depenencies according to the errors which you will face when you will try to render it for the First time.**
+   ```bash
+   take the help of the A.I Models/Tools to dectect the required dependencies
+7. **According to the output of the A.I Models/Tools,you have to install the dependencies one-by-one.**   
+## If this worked for you, You are Welcome!😊.
 
    
 

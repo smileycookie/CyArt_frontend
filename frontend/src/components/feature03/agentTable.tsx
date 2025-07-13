@@ -1,14 +1,19 @@
-// frontend\src\components\feature03\agentTable.tsx
 'use client'
 
-import { useState, useRef } from "react"
+import { useState } from "react"
 import { agents } from "@/lib/mock-agents"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Search } from "lucide-react"
+import { Agent } from "@/types/agents"
 
-const getCVSSLabel = (score: number) => {
+interface TableColumn {
+  key: keyof Agent | string
+  label: string
+}
+
+const getCVSSLabel = (score: number): "Critical" | "High" | "Medium" | "Low" => {
   if (score >= 9.0) return "Critical"
   if (score >= 7.0) return "High"
   if (score >= 4.0) return "Medium"
@@ -16,8 +21,8 @@ const getCVSSLabel = (score: number) => {
 }
 
 const getCVSSBadge = (score: number) => {
-  const label = getCVSSLabel(score) as "Critical" | "High" | "Medium" | "Low"
-  const colorMap: Record<typeof label, string> = {
+  const label = getCVSSLabel(score)
+  const colorMap = {
     Critical: "bg-red-700 text-white",
     High: "bg-red-500 text-white",
     Medium: "bg-yellow-400 text-black",
@@ -26,7 +31,7 @@ const getCVSSBadge = (score: number) => {
   return <Badge className={colorMap[label]}>{label}</Badge>
 }
 
-const exportToCSV = (data: typeof agents) => {
+const exportToCSV = (data: Agent[]) => {
   const header = ["ID", "Name", "IP", "MAC", "OS", "CVSS", "Status"]
   const rows = data.map((a) => [
     a.id,
@@ -48,19 +53,6 @@ const exportToCSV = (data: typeof agents) => {
   document.body.removeChild(link)
 }
 
-// Function to navigate to agent details on same page
-const navigateToAgentDetails = (agentId: string) => {
-  // For Next.js routing, you would use:
-  // router.push(`/agents/${agentId}`)
-  
-  // For demonstration, we'll just log the navigation
-  console.log(`Navigating to agent details for: ${agentId}`)
-  
-  // You can also trigger a state change to show the detail view
-  // For example, if you have a state management system or parent component
-  // that handles showing/hiding different views
-}
-
 export default function AgentTable() {
   const [search, setSearch] = useState("")
   const [cvssFilter, setCvssFilter] = useState<"all" | "low" | "medium" | "high" | "critical">("all")
@@ -76,10 +68,20 @@ export default function AgentTable() {
     return matchSearch && matchCVSS
   })
 
-  const handleRowClick = (agent: typeof agents[0]) => {
-  const url = `/devices/${agent.id}`
-  window.open(url, "_blank", "noopener,noreferrer")
-}
+  const handleRowClick = (agent: Agent) => {
+    const url = `/devices/${agent.id}`
+    window.open(url, "_blank", "noopener,noreferrer")
+  }
+
+  const tableColumns: TableColumn[] = [
+    { key: "id", label: "ID" },
+    { key: "name", label: "Name" },
+    { key: "ip", label: "IP" },
+    { key: "status", label: "Status" },
+    { key: "os", label: "OS" },
+    { key: "cvss", label: "CVSS" },
+    { key: "lastSeen", label: "Last Seen" }
+  ]
 
   return (
     <div className="space-y-4">
@@ -114,41 +116,43 @@ export default function AgentTable() {
         <table className="w-full text-sm">
           <thead className="sticky top-0 bg-muted">
             <tr>
-              <th className="px-2 py-2 text-left">ID</th>
-              <th className="px-2 py-2 text-left">Name</th>
-              <th className="px-2 py-2 text-left">IP</th>
-              <th className="px-2 py-2 text-left">MAC</th>
-              <th className="px-2 py-2 text-left">OS</th>
-              <th className="px-2 py-2 text-left">CVSS</th>
-              <th className="px-2 py-2 text-left">Status</th>
+              {tableColumns.map((col) => (
+                <th key={col.key} className="px-2 py-2 text-left">
+                  {col.label}
+                </th>
+              ))}
             </tr>
           </thead>
           <tbody>
             {filtered.map((agent) => (
               <tr
                 key={agent.id}
-                onClick={() => handleRowClick(agent)}
+                onDoubleClick={() => handleRowClick(agent)}
                 className="hover:bg-muted cursor-pointer transition"
-                title="Click to view agent details"
+                title="Double click to view agent details"
               >
-                <td className="px-2 py-2">{agent.id}</td>
-                <td className="px-2 py-2">{agent.name}</td>
-                <td className="px-2 py-2">{agent.ip}</td>
-                <td className="px-2 py-2">{agent.mac}</td>
-                <td className="px-2 py-2">
-                  <span className="inline-flex items-center gap-1">
-                    {agent.osIcon === "windows" && "🪟"}
-                    {agent.osIcon === "linux" && "🐧"}
-                    {agent.osIcon === "ubuntu" && "🟠"}
-                    {agent.os}
-                  </span>
-                </td>
-                <td className="px-2 py-2">{getCVSSBadge(agent.cvss)}</td>
-                <td className="px-2 py-2">
-                  <Badge className={agent.status === "Online" ? "bg-green-500" : "bg-red-500"}>
-                    {agent.status}
-                  </Badge>
-                </td>
+                {tableColumns.map((col) => (
+                  <td key={`${agent.id}-${col.key}`} className="px-2 py-2">
+                    {col.key === "status" ? (
+                      <Badge className={agent.status === "Online" ? "bg-green-500" : "bg-red-500"}>
+                        {agent.status}
+                      </Badge>
+                    ) : col.key === "cvss" ? (
+                      getCVSSBadge(agent.cvss)
+                    ) : col.key === "os" ? (
+                      <span className="inline-flex items-center gap-1">
+                        {agent.osIcon === "windows" && "🪟"}
+                        {agent.osIcon === "linux" && "🐧"}
+                        {agent.osIcon === "ubuntu" && "🟠"}
+                        {agent.os}
+                      </span>
+                    ) : col.key === "lastSeen" ? (
+                      new Date(agent.lastSeen).toLocaleString()
+                    ) : (
+                      agent[col.key as keyof Agent]
+                    )}
+                  </td>
+                ))}
               </tr>
             ))}
           </tbody>
