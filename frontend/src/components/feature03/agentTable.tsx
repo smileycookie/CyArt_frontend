@@ -127,7 +127,7 @@ export default function AgentTable() {
             {filtered.map((agent) => (
               <tr
                 key={agent.id}
-                onClick={() => handleRowClick(agent)}
+                onDoubleClick={() => handleRowClick(agent)}
                 className="hover:bg-muted cursor-pointer transition"
                 title="Click to view agent details"
               >
