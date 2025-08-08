@@ -1,6 +1,6 @@
 
 # Important:
-
+### This project is being developed as an assignment during the SOC Internship provided by CyArt I.T Consulting.
 ---
 
 ## ⚠️ Important: Run `npm install` After Cloning
