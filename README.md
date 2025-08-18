@@ -6,7 +6,7 @@
 ## Preview
 <div align="center">
  
-https://github.com/xiv3r/Burpsuite-Professional/assets/117867334/c25831a4-68a2-44ee-b6dd-5ff18165f340
+https://drive.google.com/file/d/1UeSMr_qFp3osF5yqmnzRSAr60HAEXv8t/view?usp=drive_link
 </div>
 
 ## ⚠️ Important: Run `npm install` After Cloning
